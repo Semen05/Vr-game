@@ -167,8 +167,14 @@ class App {
         const self = this;
 
         // TASK 1.1 Create teleports and add them to the scene
-
-        this.setupXR();
+        this.teleports = [] ;
+location.forEach(location => {
+    const teleport = new TeleportMesh();
+    teleport.position.copy(location);
+    self.scene.add(teleport);
+    self.teleports.push(teleport)
+})
+        this.setupXR()
 
         this.loading = false;
 
@@ -241,7 +247,7 @@ class App {
         function onSqueezeStart() {
             this.userData.squeezePressed = true;
             // TASK 1.2 Display teleports when squeeze button is pressed
-
+self .teleports.forEach(telport => telport.fadeIn(1));
         }
 
         function onSqueezeEnd() {
